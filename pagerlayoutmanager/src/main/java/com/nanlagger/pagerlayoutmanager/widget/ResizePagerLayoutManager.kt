@@ -4,6 +4,12 @@ import android.support.v7.widget.RecyclerView
 
 class ResizePagerLayoutManager(private val maxHeight: Int, private val minHeight: Int) : PagerLayoutManager() {
 
+    override fun scrollHorizontallyBy(dx: Int, recycler: RecyclerView.Recycler?, state: RecyclerView.State?): Int {
+        val delta = super.scrollHorizontallyBy(dx, recycler, state)
+        updateViewScale()
+        return delta
+    }
+
     override fun layout(recycler: RecyclerView.Recycler) {
         super.layout(recycler)
         updateViewScale()
